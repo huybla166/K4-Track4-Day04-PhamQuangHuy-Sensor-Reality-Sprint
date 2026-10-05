@@ -2,12 +2,11 @@
 ## K4-Track4-Day04-Team01-Sensor-Reality-Sprint
 
 * **Chủ đề:** T3. Calibration drift impact (Sensor Reality Sprint · Track 4 Day 4)
-* **Nhóm thực hiện:** Nhóm 1 (5 thành viên — K4 Track 4 VinUni)
-  - Phạm Quang Huy (2A202602900) - Metric & Geometry Lead
-  - Trần Trung Kiên (2A202602901) - Data & Perturbation Lead
-  - Nguyễn Thành Danh (2A202602902) - Benchmark Runner & Eval
-  - Lê Quốc Việt (2A202602903) - Literature & Method Analyst
-  - Hoàng Anh Tuấn (2A202602904) - Safety & Fallback Lead
+* **Nhóm thực hiện:** Nhóm 1 (4 thành viên — K4 Track 4 VinUni)
+  - Phạm Quang Huy (2A202602900) - Metric & Geometry Architect (Trưởng nhóm)
+  - Ngô Đức Chung (2A202602985) - Data & Benchmark Evaluation Lead
+  - Tạ Hoàng Vinh (2A202602543) - Failure Case & SOTA Literature Analyst
+  - Nguyễn Trần Kiên (2A202602571) - Safety State Machine & Fallback Lead
 * **Repo GitHub:** `https://github.com/huybla166/K4-Track4-Day04-Team01-Sensor-Reality-Sprint`
 * **Lệnh chạy tái hiện:** `python scripts/run_calibration_drift.py`
 
