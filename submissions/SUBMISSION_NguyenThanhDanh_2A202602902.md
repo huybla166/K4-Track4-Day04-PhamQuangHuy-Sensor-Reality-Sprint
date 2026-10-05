@@ -13,7 +13,7 @@
 ---
 
 ### 2. Method (Phương pháp & Nguồn tham khảo)
-- **Nguồn tham khảo:** Paper *Dong et al. (CVPR 2023)* về benchmark nuScenes-C; công trình hiệu chuẩn trực tuyến *Galibr (2024)* và *CalibRefine (2025)*.
+- **Paper/Repo SOTA chuẩn môn học:** CalibRefine (*IEEE TIM 2026 / XCalib repo*), DF-Calib (*arXiv:2504.01416*), Galibr (*IEEE IV 2024*); Benchmark nền tảng: Dong et al. (*CVPR 2023*).
 - **Thuật toán & Input/Output:**
   - *Input:* Point cloud LiDAR 3D, ảnh RGB 2D, ma trận nội thông số K, ma trận ngoại thông số (R, t).
   - *Output:* Tọa độ chiếu 2D [u, v] của điểm LiDAR lên ảnh camera.

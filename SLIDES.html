@@ -637,40 +637,49 @@
             </div>
         </div>
 
-        <!-- SLIDE 7: CHALLENGE REPO -->
+        <!-- SLIDE 7: SOTA LITERATURE & CHALLENGE -->
         <div class="slide" id="slide-7">
             <div class="slide-header">
                 <div>
-                    <span class="slide-tag">Bonus Challenge · Targetless Calibration</span>
-                    <h1 class="slide-title">Phân tích Repo Galibr (PRBonn 2024 / IEEE RA-L)</h1>
+                    <span class="slide-tag">SOTA Literature & Challenge (Slide Trang 5)</span>
+                    <h1 class="slide-title">Các Giải Pháp SOTA: CalibRefine, DF-Calib & Galibr</h1>
                 </div>
                 <div class="slide-speaker">
-                    <span class="speaker-badge">Challenge Thêm Trang 5</span>
-                    <div>Literature Analysis</div>
+                    <span class="speaker-badge">Literature & Challenge Lead</span>
+                    <div>Lê Quốc Việt · MSSV: 2A202602903</div>
                 </div>
             </div>
             <div class="slide-body">
                 <div class="grid-2">
                     <div class="col-card">
-                        <div class="card-header">⚙️ Cơ chế Hoạt động của Galibr</div>
-                        <ul class="feature-list">
-                            <li><strong>Input:</strong> Điểm LiDAR thô (Raw Point Cloud) + Ảnh màu Camera (RGB Image) trong môi trường tự nhiên (không cần biển bàn cờ checkerboard).</li>
-                            <li><strong>Output:</strong> Ma trận ngoại thông số 6 bậc tự do $T = [R \mid t] \in SE(3)$ tối ưu.</li>
-                            <li><strong>Phương pháp cốt lõi:</strong> Trích xuất đường viền nhảy độ sâu (3D Depth Discontinuity) từ LiDAR và viền cạnh ảnh (2D Photometric Edges). Dùng khoảng cách Chamfer và tối ưu phi tuyến Levenberg-Marquardt để ép 2 đường viền khít lại nhau.</li>
+                        <div class="card-header">📚 3 Trụ Cột Paper / Repo SOTA Chuẩn Môn Học</div>
+                        <ul class="feature-list" style="font-size: 0.88rem;">
+                            <li><strong style="color: #38bdf8;">1. CalibRefine (IEEE TIM 2026 / XCalib repo):</strong>
+                                <br>Thuật toán hiệu chuẩn liên tục (Continuous Online Calibration) ngay khi xe đang di chuyển. Sử dụng bộ lọc thích nghi EKF khử rung động mà không cần dừng xe!
+                            </li>
+                            <li><strong style="color: #818cf8;">2. DF-Calib (arXiv:2504.01416):</strong>
+                                <br>Direct & Fast Targetless Extrinsic Calibration: Khớp trực tiếp biên độ sâu (Depth-Edge) với gradient ảnh, tốc độ cực nhanh trong môi trường đô thị động.
+                            </li>
+                            <li><strong style="color: #34d399;">3. Galibr (IEEE IV 2024 / PRBonn):</strong>
+                                <br>Tối ưu hóa hình học vi phân dựa trên Chamfer Distance giữa 3D LiDAR depth edges và 2D Canny edges không cần cọc tiêu bàn cờ.
+                            </li>
                         </ul>
                     </div>
                     <div class="col-card">
-                        <div class="card-header">⚠️ Giới hạn Thực tế (Limitation)</div>
-                        <ul class="feature-list">
-                            <li><strong>Thất bại trong môi trường phi cấu trúc:</strong> Nếu xe chạy trên cao tốc trống trơn, sa mạc hoặc ban đêm không có viền vật thể $\to$ Thuật toán không thể hội tụ (Loss phân kỳ).</li>
-                            <li><strong>Độ trễ tính toán (200–500 ms):</strong> Quá trình tối ưu phi tuyến ngốn GPU, không thể chạy thời gian thực 20 Hz theo từng frame xe chạy.</li>
-                            <li>👉 <strong>Kết luận của nhóm:</strong> Galibr chỉ phù hợp chạy nền định kỳ khi xe đứng yên chờ đèn đỏ hoặc đỗ xe, hoàn toàn khớp với kiến trúc Fallback của nhóm!</li>
+                        <div class="card-header">⚙️ Phân tích Chi tiết Repo Galibr & Limitation</div>
+                        <ul class="feature-list" style="font-size: 0.88rem;">
+                            <li><strong>Input $\to$ Output:</strong> Raw Point Cloud + RGB Image $\to$ Ma trận 6-DoF $T = [R \mid t] \in SE(3)$ tối ưu.</li>
+                            <li><strong>Cơ chế:</strong> Giảm thiểu khoảng cách Chamfer giữa viền ảnh và viền laser bằng thuật toán phi tuyến Levenberg-Marquardt.</li>
+                            <li><strong>Giới hạn thực tế (Limitation):</strong>
+                                <br>• Thất bại ở địa hình phi cấu trúc (sa mạc, cao tốc trống trải, đêm tối thiếu viền).
+                                <br>• Độ trễ 200–500 ms $\to$ Cần chạy định kỳ khi dừng đèn đỏ hoặc dùng CalibRefine bổ trợ khi xe đang chạy!
+                            </li>
                         </ul>
                     </div>
                 </div>
             </div>
             <div class="slide-footer">
-                <div class="nav-hints">Repo URL: https://github.com/PRBonn/galibr</div>
+                <div class="nav-hints">Trích dẫn chính xác: CalibRefine (IEEE TIM 2026), DF-Calib (arXiv:2504.01416), Galibr (IEEE IV 2024).</div>
                 <div>Slide 7 / 8</div>
             </div>
         </div>
