@@ -1,6 +1,6 @@
 # KỊCH BẢN THUYẾT TRÌNH PITCH 3–5 PHÚT (PHÂN VAI 4 THÀNH VIÊN)
 ## Chủ đề T3: Calibration Drift Impact & Targetless Online Re-calibration
-### Khóa học: AI20K - Track 4: ADAS Sensing & Estimation (Nhóm 01)
+### Khóa học: AI20K - Track 4: ADAS Sensing & Estimation (Nhóm PhamQuangHuy)
 
 * **Thời gian tổng:** 4 phút 30 giây (khoảng 60–70 giây / người)
 * **Visuals trình chiếu:** Mở sẵn file presentation `SLIDES.html` và app tương tác `DEMO_SIMULATOR.html`.

@@ -1,6 +1,6 @@
 # BƯỚC 4 · CHẠY CHỦ ĐỀ T3 VÀ GHI KẾT QUẢ ĐỊNH LƯỢNG (45 – 95 PHÚT)
 ## Chủ đề: T3. Calibration Drift Impact & Targetless Online Re-calibration
-### Khóa học: AI20K - Track 4: ADAS Sensing & Estimation (Nhóm 01)
+### Khóa học: AI20K - Track 4: ADAS Sensing & Estimation (Nhóm PhamQuangHuy)
 
 ---
 
@@ -92,4 +92,4 @@ Bóc tách chi tiết 3 công trình Targetless Calibration hàng đầu:
   [INFO] Saved trend curves to results/image1.png
   === CALIBRATION DRIFT BENCHMARK COMPLETED SUCCESSFULLY ===
   ```
-- **Ứng dụng mô phỏng tương tác:** Mở trực tiếp [`DEMO_SIMULATOR.html`](file:///D:/AI%20in%20Action/Labs/K4-Track4-Day04-Team01-Sensor-Reality-Sprint/DEMO_SIMULATOR.html).
+- **Ứng dụng mô phỏng tương tác:** Mở trực tiếp [`DEMO_SIMULATOR.html`](file:///D:/AI%20in%20Action/Labs/K4-Track4-Day04-PhamQuangHuy-Sensor-Reality-Sprint/DEMO_SIMULATOR.html).

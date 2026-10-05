@@ -1,6 +1,6 @@
 # BƯỚC 5 · GIẢI THÍCH FAILURE CASE VÀ CHỌN CẢI TIẾN (95 – 115 PHÚT)
 ## Chủ đề: T3. Calibration Drift Impact & Targetless Online Re-calibration
-### Khóa học: AI20K - Track 4: ADAS Sensing & Estimation (Nhóm 01)
+### Khóa học: AI20K - Track 4: ADAS Sensing & Estimation (Nhóm PhamQuangHuy)
 
 ---
 

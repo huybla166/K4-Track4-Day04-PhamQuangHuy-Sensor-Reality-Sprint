@@ -1,12 +1,12 @@
 # BƯỚC 2 · TÌM PAPER/REPOSITORY VÀ CHỐT ĐƯỜNG CHẠY (15 – 45 PHÚT)
 ## Đề tài: T3. Calibration Drift Impact & Targetless Online Re-calibration
-### Khóa học: AI20K - Track 4: ADAS Sensing & Estimation (Nhóm 01)
+### Khóa học: AI20K - Track 4: ADAS Sensing & Estimation (Nhóm PhamQuangHuy)
 
 ---
 
 ### BẢNG TỔNG KẾT BƯỚC 2 (ĐỐI CHIẾU TIÊU CHÍ SLIDE CHUẨN)
 
-| Câu hỏi khi đọc nguồn | Ghi chép chi tiết của Nhóm 01 |
+| Câu hỏi khi đọc nguồn | Ghi chép chi tiết của Nhóm PhamQuangHuy |
 | :--- | :--- |
 | **1. Paper / Repo chính thức được chọn** | • **Repo SOTA 1 (Challenge):** `Galibr: Targetless LiDAR-Camera Calibration` (IEEE IV 2024 / PRBonn, repo: `https://github.com/PRBonn/galibr`).<br>• **Repo SOTA 2 (Continuous):** `CalibRefine: Continuous Online Extrinsic Calibration` (IEEE TIM 2026 / XCalib repo: `https://github.com/hku-mars/CalibRefine`).<br>• **Paper SOTA 3 (Direct & Fast):** `DF-Calib` (*arXiv:2504.01416*, 2025).<br>• **Paper Benchmark nền tảng [S5]:** *Dong et al., CVPR 2023* (*Benchmarking Robustness in 3D Object Detection Against Sensor Corruptions* - nuScenes-C / KITTI-C). |
 | **2. Phương pháp nhận gì và tạo gì? (Input $\to$ Output)** | • **Input:** Ảnh RGB ($1600 \times 900$ hoặc Full HD 1080p), Đám mây điểm LiDAR thô ($N \times 3$), Ma trận nội suy Camera $K$ ($f_x, f_y, c_x, c_y$), Ma trận ngoại thông số danh định ban đầu $T_0$.<br>• **Output:** Ma trận ngoại thông số tối ưu $T_{\text{cam\_lidar}} = [R \mid t] \in SE(3)$ gồm 6 bậc tự do (6-DoF), sai số chiếu lại (MRE) và Similarity Confidence Score. |

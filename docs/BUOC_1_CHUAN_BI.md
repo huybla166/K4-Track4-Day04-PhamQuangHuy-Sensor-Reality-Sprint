@@ -1,12 +1,12 @@
 # BƯỚC 1 · CHUẨN BỊ (0 – 15 PHÚT)
 ## Đề tài: T3. Calibration Drift Impact & Targetless Online Re-calibration
-### Khóa học: AI20K - Track 4: ADAS Sensing & Estimation (Nhóm 01)
+### Khóa học: AI20K - Track 4: ADAS Sensing & Estimation (Nhóm PhamQuangHuy)
 
 ---
 
 ### BẢNG KÊ KHAI BƯỚC 1 (ĐỐI CHIẾU TIÊU CHÍ SLIDE CHUẨN)
 
-| Mục cần chốt | Nội dung chi tiết chuẩn mực của Nhóm 01 | Tự kiểm tra & Đánh giá |
+| Mục cần chốt | Nội dung chi tiết chuẩn mực của Nhóm PhamQuangHuy | Tự kiểm tra & Đánh giá |
 | :--- | :--- | :---: |
 | **1. Nền tảng, tính năng, sensor** | • **Nền tảng:** Xe tự hành ADAS L2+/L3 (Autonomous Driving Platform).<br>• **Tính năng chịu ảnh hưởng:** Nhận diện vật thể 3D đa cảm biến (3D Object Detection) và Phanh khẩn cấp tự động (AEB - Autonomous Emergency Braking).<br>• **Sensor kiểm tra:** Hệ đa cảm biến Camera góc rộng Full HD 1080p ($f_x = 1350\text{ px}$) gắn sau gương kính lái và Roof LiDAR 3D 32 chùm tia gắn trên nóc xe. | ✅ **Đạt:** Đã khoanh vùng hẹp nền tảng xe ADAS, 2 sensor cụ thể và tính năng an toàn sống còn. |
 | **2. Failure case kiểm tra** | • **Tên lỗi:** Trôi dạt ma trận ngoại thông số giữa Camera và LiDAR (**Extrinsic Calibration Drift**).<br>• **Điều kiện xuất hiện thực tế:** Xuất hiện sau khi xe đi qua gờ giảm tốc mạnh, sập ổ gà trong khu đô thị, va quẹt nhẹ khi dừng đỗ, hoặc do biến dạng nhiệt (Thermal Expansion) chênh lệch nhiệt độ tới 60°C giữa trưa hè và đêm lạnh làm giá đỡ kim loại bị vênh $0.5^\circ - 2.5^\circ$. | ✅ **Đạt:** Chỉ rõ điều kiện thực tế (ổ gà, gờ giảm tốc, nhiệt) chứ không nói chung chung "bị hỏng". |

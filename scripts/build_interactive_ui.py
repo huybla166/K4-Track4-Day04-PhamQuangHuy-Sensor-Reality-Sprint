@@ -85,7 +85,7 @@ def main():
     # Convert points to compact list of [x, y, z] in ego frame
     points_ego_list = np.round(pts_ego_sub, 3).tolist()
     
-    out_dir = r"D:\AI in Action\Labs\K4-Track4-Day04-Team01-Sensor-Reality-Sprint\demo_ui"
+    out_dir = r"D:\AI in Action\Labs\K4-Track4-Day04-PhamQuangHuy-Sensor-Reality-Sprint\demo_ui"
     os.makedirs(out_dir, exist_ok=True)
     
     html_content = f"""<!DOCTYPE html>
@@ -454,7 +454,7 @@ def main():
             <span class="badge-tag" style="background: rgba(34,197,94,0.15); color: #22c55e; border-color: rgba(34,197,94,0.3)">Live nuScenes Demo</span>
         </div>
         <div class="team-meta">
-            <div>Team 01 · <strong>VinUni AI Thực Chiến K04</strong></div>
+            <div>Team PhamQuangHuy · <strong>VinUni AI Thực Chiến K04</strong></div>
             <div style="font-size: 0.72rem; color: #64748b;">nuScenes CAM_FRONT × LIDAR_TOP (34,688 points)</div>
         </div>
     </header>
@@ -926,7 +926,7 @@ def main():
     print(f"Interactive UI written to: {html_path}")
 
     # Also write a copy to root as DEMO_SIMULATOR.html so it's super easy to double click
-    root_html = r"D:\AI in Action\Labs\K4-Track4-Day04-Team01-Sensor-Reality-Sprint\DEMO_SIMULATOR.html"
+    root_html = r"D:\AI in Action\Labs\K4-Track4-Day04-PhamQuangHuy-Sensor-Reality-Sprint\DEMO_SIMULATOR.html"
     with open(root_html, "w", encoding="utf-8") as f:
         f.write(html_content)
     print(f"Copied standalone launcher to: {root_html}")

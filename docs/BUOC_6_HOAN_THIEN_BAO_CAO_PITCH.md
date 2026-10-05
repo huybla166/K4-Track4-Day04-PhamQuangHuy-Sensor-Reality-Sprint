@@ -1,12 +1,12 @@
 # BƯỚC 6 · HOÀN THIỆN BÁO CÁO VÀ KỊCH BẢN PITCH (115 – 120 PHÚT)
 ## Chủ đề: T3. Calibration Drift Impact & Targetless Online Re-calibration
-### Khóa học: AI20K - Track 4: ADAS Sensing & Estimation (Nhóm 01)
+### Khóa học: AI20K - Track 4: ADAS Sensing & Estimation (Nhóm PhamQuangHuy)
 
 ---
 
 ### BẢNG TỰ KIỂM TRA TRƯỚC KHI PITCH (PRE-PITCH AUDIT CHECKLIST)
 
-| Tiêu chuẩn tự kiểm tra | Hiện trạng trong Repository của Nhóm 01 | Đánh giá |
+| Tiêu chuẩn tự kiểm tra | Hiện trạng trong Repository của Nhóm PhamQuangHuy | Đánh giá |
 | :--- | :--- | :---: |
 | **1. Có nền tảng, tính năng và sensor cụ thể** | • **Nền tảng:** Xe tự hành ADAS L2+/L3.<br>• **Tính năng:** Nhận diện 3D (3D Detection) & Phanh khẩn cấp tự động (AEB).<br>• **Sensor:** Camera Full HD 1080p ($f_x = 1350\text{ px}$) + Roof LiDAR 3D 32 tia. | ✅ **Đạt 100%** |
 | **2. Có metric định lượng, baseline và điều kiện lỗi** | • **Metric:** MRE (pixels), Point Recall (%), BBox IoU.<br>• **Baseline:** $0.0^\circ, 0\text{ cm}$ ($MRE = 0\text{ px}$, $Recall = 100\%$, $IoU = 1.0$).<br>• **Điều kiện lỗi:** 4 mức can thiệp có chủ đích ($0.5^\circ, 1.0^\circ, 2.0^\circ, 2.5^\circ$). | ✅ **Đạt 100%** |

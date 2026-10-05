@@ -1,11 +1,11 @@
 # BƯỚC 3 · THIẾT KẾ BENCHMARK CÓ ĐỐI CHỨNG (45 – 95 PHÚT)
 ## Đề tài: T3. Calibration Drift Impact & Targetless Online Re-calibration
-### Khóa học: AI20K - Track 4: ADAS Sensing & Estimation (Nhóm 01)
+### Khóa học: AI20K - Track 4: ADAS Sensing & Estimation (Nhóm PhamQuangHuy)
 
 ---
 
 ### 1. NGUYÊN TẮC CỐ ĐỊNH ĐIỀU KIỆN SO SÁNH
-Để cô lập chính xác ảnh hưởng của sự cố trôi dạt ngoại thông số (Calibration Drift), Nhóm 01 tuân thủ nghiêm ngặt nguyên tắc **chỉ thay đổi duy nhất một yếu tố** (Single Variable Perturbation):
+Để cô lập chính xác ảnh hưởng của sự cố trôi dạt ngoại thông số (Calibration Drift), Nhóm PhamQuangHuy tuân thủ nghiêm ngặt nguyên tắc **chỉ thay đổi duy nhất một yếu tố** (Single Variable Perturbation):
 - **Cố định dữ liệu đầu vào:** Cặp khung hình đồng bộ nuScenes v1.0-mini (`CAM_FRONT` 1080p, $f_x = 1350\text{ px}$ và `LIDAR_TOP` 34.688 điểm 3D).
 - **Cố định ma trận nội thông số Camera K:** $f_x = 1350.0, f_y = 1350.0, c_x = 960.0, c_y = 540.0$.
 - **Cố định công thức và cách tính metric:** Giữ nguyên 100% thuật toán đo trên toàn bộ các mức thử nghiệm.

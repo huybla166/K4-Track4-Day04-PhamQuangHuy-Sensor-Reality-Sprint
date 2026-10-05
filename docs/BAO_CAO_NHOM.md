@@ -1,8 +1,8 @@
 # BÁO CÁO 1 TRANG CHUẨN SLIDE — CHỦ ĐỀ T3: CALIBRATION DRIFT IMPACT
-## K4-Track4-Day04-Team01-Sensor-Reality-Sprint
+## K4-Track4-Day04-PhamQuangHuy-Sensor-Reality-Sprint
 
 * **Chủ đề:** T3. Calibration drift impact (Sensor Reality Sprint · Track 4 Day 4)
-* **Nhóm thực hiện:** Nhóm 1 (4 thành viên — K4 Track 4 VinUni)
+* **Nhóm thực hiện:** Nhóm PhamQuangHuy (4 thành viên — K4 Track 4 VinUni)
   - Phạm Quang Huy (2A202602900) - Metric & Geometry Architect (Trưởng nhóm)
   - Ngô Đức Chung (2A202602985) - Data & Benchmark Evaluation Lead
   - Tạ Hoàng Vinh (2A202602543) - Failure Case & SOTA Literature Analyst

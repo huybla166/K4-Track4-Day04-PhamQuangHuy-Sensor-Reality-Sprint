@@ -1,5 +1,5 @@
 # BƯỚC 7 · HƯỚNG DẪN NỘP BÀI TRÊN VLEARN & KIỂM TRA RUBRIC
-## Tên Repository chuẩn: K4-Track4-Day04-Team01-Sensor-Reality-Sprint
+## Tên Repository chuẩn: K4-Track4-Day04-PhamQuangHuy-Sensor-Reality-Sprint
 ### Khóa học: AI20K - Track 4: ADAS Sensing & Estimation
 
 ---
@@ -8,7 +8,7 @@
 Đề bài yêu cầu đặt tên thư mục gốc là `K4-Track4-Day04-TenNhom-Sensor-Reality-Sprint`. Repository của nhóm đã chuẩn chỉnh 100%:
 
 ```text
-K4-Track4-Day04-Team01-Sensor-Reality-Sprint/
+K4-Track4-Day04-PhamQuangHuy-Sensor-Reality-Sprint/
 ├── TEAMMATES.md                                     # [Bắt buộc] Danh sách thành viên (Họ tên, MSSV, Vai trò)
 ├── README.md                                        # [Bắt buộc] Báo cáo 1 trang chuẩn Trang 8
 ├── DEMO_SIMULATOR.html                              # [Demo 40%] Trình mô phỏng tương tác 60 FPS
@@ -46,7 +46,7 @@ K4-Track4-Day04-Team01-Sensor-Reality-Sprint/
 #### Bước 2.1: Đẩy mã nguồn lên GitHub của bạn
 Chạy 3 lệnh sau trong PowerShell để đồng bộ toàn bộ repo lên GitHub:
 ```powershell
-cd "D:\AI in Action\Labs\K4-Track4-Day04-Team01-Sensor-Reality-Sprint"
+cd "D:\AI in Action\Labs\K4-Track4-Day04-PhamQuangHuy-Sensor-Reality-Sprint"
 git remote add origin https://github.com/huybla166/K4-Track4-Day04-PhamQuangHuy-Sensor-Reality-Sprint.git
 git branch -M main
 git push -u origin main
@@ -70,7 +70,7 @@ Mỗi thành viên vào link nộp bài trên VLearn:
 ---
 
 ### 3. KIỂM TRA ĐỐI CHIẾU TIÊU CHÍ BƯỚC 7 (100% COMPLETE)
-- [x] Tên thư mục gốc đúng chuẩn: `K4-Track4-Day04-Team01-Sensor-Reality-Sprint`.
+- [x] Tên thư mục gốc đúng chuẩn: `K4-Track4-Day04-PhamQuangHuy-Sensor-Reality-Sprint`.
 - [x] File `TEAMMATES.md` nằm ở thư mục gốc, liệt kê đầy đủ họ tên, MSSV, vai trò.
 - [x] Cả 4 bản nộp cá nhân đều dẫn link tới repo chung và các file plot/csv tương ứng.
 - [x] Đáp ứng đủ 4 tiêu chí chấm điểm trong PDF (40% Demo/Benchmark, 25% Failure thực tế, 20% Thuật toán, 15% Trade-off).
