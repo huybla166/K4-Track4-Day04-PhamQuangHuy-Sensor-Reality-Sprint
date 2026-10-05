@@ -1,0 +1,7 @@
+Condition,Yaw_Drift_deg,Trans_Drift_cm,Mean_Reprojection_Error_px,Max_Reprojection_Error_px,Vehicle_Point_Retention_Pct,Vehicle_Association_Drop_Pct,Distant_Object_Association_Drop_Pct,Fusion_mAP_Proxy_Pct
+Baseline,0.0,0.0,0.0,0.0,100.0,0.0,0.0,100.0
+Drift L1 (Rung nhẹ),0.5,2.0,4.19,8.72,100.0,0.0,0.0,95.34
+Drift L2 (Lệch vừa),1.0,5.0,8.5,17.92,99.29,0.71,0.0,86.5
+Drift L3 (Lệch nặng),2.0,10.0,16.91,36.07,98.35,1.65,0.0,62.15
+Drift L4 (Cực nặng),3.5,15.0,29.07,58.58,94.8,5.2,0.0,14.67
+Drift L5 (Failure),5.0,20.0,41.13,83.23,92.43,7.57,0.0,0.0
