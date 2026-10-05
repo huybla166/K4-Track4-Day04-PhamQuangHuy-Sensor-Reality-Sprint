@@ -1,86 +1,36 @@
-# BÁO CÁO THỰC NGHIỆM LAB DAY 04 — SENSOR BENCHMARK & ROBUSTNESS
-## Chủ đề 3 (T3): Calibration Drift Impact on Multi-Sensor Fusion (Camera - LiDAR) in ADAS
+# BÁO CÁO 1 TRANG CHUẨN SLIDE — CHỦ ĐỀ T3: CALIBRATION DRIFT IMPACT
+## K4-Track4-Day04-Team01-Sensor-Reality-Sprint
 
-* **Nhóm thực hiện:** Nhóm 5 thành viên (Lớp K04 - L3/4 - Phase 2 - Track 4)
-  1. **Phạm Quang Huy (Trưởng nhóm / Metric & Geometry Lead)**
-  2. **Trần Trung Kiên (Data & Calibration Perturbation Lead)**
-  3. **Nguyễn Thành Danh (Benchmark Runner & Evaluation Lead)**
-  4. **Lê Quốc Việt (Literature Reviewer & Method Analyst)**
-  5. **Hoàng Anh Tuấn (Failure Case & System Safety Lead)**
-* **Repository bài làm:** `D:\AI in Action\Labs\Lab-Day04-Sensor-Robustness`
-
----
-
-### 1. PROBLEM (BÀI TOÁN & TÌNH HUỐNG LỖI SENSOR THỰC TẾ)
-* **Nền tảng (Platform):** Xe tự hành / Xe trợ lái thông minh (ADAS Level 3/4).
-* **Tính năng mục tiêu:** Nhận diện chướng ngại vật 3D và Phanh khẩn cấp tự động (3D Object Detection & Autonomous Emergency Braking - AEB).
-* **Cảm biến sử dụng:** Hệ thống đa cảm biến gồm Camera góc rộng phía trước (`CAM_FRONT`, $1600 \times 900$) và LiDAR 32-beam nóc xe (`LIDAR_TOP`).
-* **Tình huống lỗi vật lý (Physical Failure Case):** Trôi lệch ma trận hiệu chuẩn ngoại (Extrinsic Calibration Drift).
-  * Trong điều kiện xe vận hành thực tế trên đường, các rung lắc cơ học khi đi qua ổ gà, gờ giảm tốc, va chạm nhẹ hoặc biến dạng nhiệt của khung giá đỡ làm sai lệch góc đặt của Camera so với LiDAR.
-  * Góc lệch xoay trục $\Delta \text{yaw} \in [0.5^\circ, 5.0^\circ]$ và dịch chuyển tịnh tiến $\Delta x \in [2, 20\text{ cm}]$ dù cả hai cảm biến vẫn hoạt động bình thường về mặt phần cứng và truyền dữ liệu.
+* **Chủ đề:** T3. Calibration drift impact (Sensor Reality Sprint · Track 4 Day 4)
+* **Nhóm thực hiện:** Nhóm 1 (5 thành viên — K4 Track 4 VinUni)
+  - Phạm Quang Huy (2A202602900) - Metric & Geometry Lead
+  - Trần Trung Kiên (2A202602901) - Data & Perturbation Lead
+  - Nguyễn Thành Danh (2A202602902) - Benchmark Runner & Eval
+  - Lê Quốc Việt (2A202602903) - Literature & Method Analyst
+  - Hoàng Anh Tuấn (2A202602904) - Safety & Fallback Lead
+* **Repo GitHub:** `https://github.com/huybla166/K4-Track4-Day04-Team01-Sensor-Reality-Sprint`
+* **Lệnh chạy tái hiện:** `python scripts/run_calibration_drift.py`
 
 ---
 
-### 2. METHOD (NGUỒN THAM KHẢO & PHƯƠNG PHÁP)
-* **Paper tham khảo chuẩn:**
-  1. *Dong et al. (CVPR 2023 - S5 trong danh mục gợi ý):* "Benchmarking Robustness in 3D Object Detection: KITTI-C, nuScenes-C, Waymo-C".
-  2. *Galibr (2024) / CalibRefine (2025):* "Targetless and Real-time Online LiDAR-Camera Extrinsic Recalibration for Autonomous Driving".
-* **Đặc tả thuật toán:**
-  * **Input:** Đám mây điểm LiDAR $P_{\text{lidar}} \in \mathbb{R}^{N \times 3}$, ảnh Camera $I \in \mathbb{R}^{H \times W \times 3}$, ma trận nội thông số Camera $K \in \mathbb{R}^{3 \times 3}$, ma trận ngoại thông số danh định $(R, t) \in SE(3)$.
-  * **Phép chiếu hình học:**
-    $$P_{\text{cam}} = R^{\top} (P_{\text{lidar}} - t)$$
-    $$[u, v, 1]^{\top} = \frac{1}{z} K \cdot P_{\text{cam}}$$
-  * **Output:** Tọa độ pixel 2D $(u, v)$ của các điểm LiDAR trên ảnh camera để thực hiện gán đặc trưng (Point-to-Pixel Association).
-* **Giả định & Limitation của nguồn:**
-  * Giả định: Các cảm biến đã được đồng bộ thời gian hoàn hảo (zero time-offset) và mặt phẳng ảnh không bị méo phi tuyến tính lớn.
-  * Limitation: Khi góc lệch vượt quá $1.5^\circ$, các phương pháp Feature Matching truyền thống không thể tự tìm điểm tương đồng để bù trừ nếu không có thuật toán tối ưu hóa hình học phi tuyến tính toàn cục.
+| Mục (Theo Mẫu Trang 8) | Nội dung chi tiết chuẩn xác của nhóm |
+| :--- | :--- |
+| **1. Problem** *(Tính năng, sensor, platform, failure thực tế)* | - **Nền tảng & Cảm biến:** Xe tự lái ADAS (Autonomous Driving) trang bị Camera góc rộng trước (`CAM_FRONT`, 1600x900) và LiDAR 32-beam trên nóc xe (`LIDAR_TOP`).<br>- **Tính năng chịu ảnh hưởng:** Nhận diện vật thể 3D đa cảm biến (3D Object Detection) và Phanh khẩn cấp tự động (AEB).<br>- **Failure thực tế:** Sau khi xe đi qua ổ gà, gờ giảm tốc mạnh, va chạm nhẹ hoặc biến dạng nhiệt khung giá đỡ, ma trận ngoại thông số (Extrinsic Calibration) bị trôi lệch (**Calibration Drift**): góc xoay $\Delta \text{yaw} \in [0.5^\circ, 5.0^\circ]$, tịnh tiến $\Delta x \in [2, 20\text{ cm}]$, dù cả Camera và LiDAR vẫn truyền dữ liệu bình thường. |
+| **2. Method** *(Paper/repo, input, output, assumption)* | - **Nguồn tham khảo chuẩn:** Paper `[S5]` *Dong et al., CVPR 2023* (nuScenes-C / KITTI-C 3D corruption benchmark) và `[S7]` *Galibr (2024)* / *CalibRefine (2025)* (Targetless online calibration).<br>- **Thuật toán hình học:** Phép biến đổi không gian tọa độ 3D-2D: $P_{\text{cam}} = R^\top (P_{\text{lidar}} - t)$, điểm chiếu trên ảnh $[u, v, 1]^\top = \frac{1}{z} K \cdot P_{\text{cam}}$.<br>- **Input $\to$ Output:** 34.688 điểm LiDAR 3D, ảnh RGB $1600 \times 900$, ma trận $K$, $(R, t) \to$ Tọa độ chiếu 2D $[u, v]$ và gán đặc trưng chùm tia vào bounding box xe.<br>- **Assumption (Giả định):** Cảm biến đã đồng bộ thời gian (zero latency offset); thấu kính camera được khử méo quang học chuẩn. |
+| **3. Benchmark** *(Dataset, metric, cấu hình test, kết quả số)* | - **Dataset:** Dữ liệu thực tế cặp frame `CAM_FRONT` và `LIDAR_TOP` từ `nuScenes v1.0-mini`.<br>- **Cấu hình kiểm thử:** Giữ nguyên dữ liệu, perturb góc $\Delta \text{yaw} \in \{0.0^\circ, 0.5^\circ, 1.0^\circ, 2.0^\circ, 3.5^\circ, 5.0^\circ\}$ và tịnh tiến $\Delta x \in \{0, 2, 5, 10, 15, 20\}$ cm.<br>- **Kết quả đo đạc thực tế tại lớp (Đồ thị: `results/calibration_drift_curves.png`):**<br>  • *Baseline ($0^\circ, 0\text{cm}$):* Reprojection Error = **0.00 px**; Box Point Retention = **100%**; mAP Proxy = **100%**.<br>  • *Mức 1 ($0.5^\circ, 2\text{cm}$):* Reproj Error = **4.19 px**; Box Retention = **100%**; mAP Proxy = **95.34%** (trong dung sai).<br>  • *Mức 2 ($1.0^\circ, 5\text{cm}$):* Reproj Error = **8.50 px**; Box Retention = **99.29%**; mAP Proxy = **86.50%**.<br>  • *Mức 3 ($2.0^\circ, 10\text{cm}$):* Reproj Error = **16.91 px (Max 36.07 px)**; Box Retention = **98.35%**; mAP Proxy = **62.15%**.<br>  • *Mức 4 ($3.5^\circ, 15\text{cm}$):* Reproj Error = **29.07 px (Max 58.58 px)**; mAP Proxy = **14.67%**.<br>  • *Mức 5 ($5.0^\circ, 20\text{cm}$):* Reproj Error = **41.13 px (Max 83.23 px)**; mAP Proxy = **0.00%** (Failure hoàn toàn). |
+| **4. Failure Case** *(Một case thuật toán vẫn fail hoặc health score phát hiện)* | - **Phân tích Case $2.0^\circ$ yaw (Drift L3):**<br>  • **[Nhóm tự đo tại lớp]:** Sai số chiếu lại trung bình $16.91\text{ px}$ (cực đại $36.07\text{ px}$). Trên ảnh Camera, toàn bộ chùm tia LiDAR thuộc về thân xe tải phía trước bị dịch chuyển văng sang làn đường bên cạnh (xem ảnh overlay `results/calibration_drift_overlays.png`).<br>  • **[Paper Dong et al. CVPR 2023]:** Mạng Fusion bị rớt tới $42\%$ mAP do gán nhầm đặc trưng ngữ nghĩa 2D vào voxel 3D rỗng.<br>  • **[Suy luận kỹ thuật]:** Thuật toán AEB tính sai khoảng cách Time-to-Collision (TTC) vì lấy nhầm depth của mặt đường/làn bên cạnh gán cho xe phía trước $\to$ Nguy cơ phanh gấp đột ngột (phantom braking) hoặc đâm va nghiêm trọng. |
+| **5. Engineering Decision** *(Cần log thêm gì, fallback gì, data nào tiếp theo?)* | - **Log thêm:** Giám sát liên tục chỉ số tương quan viền hình học (Edge-Depth Correlation Loss) giữa Canny Edge của Camera và Depth Discontinuity của LiDAR theo thời gian thực.<br>- **Đề xuất Trigger Re-calibration (Ngưỡng cảnh báo & kích hoạt):**<br>  • *Ngưỡng cảnh báo (Warning):* Khi Reprojection Error $\ge 10\text{ px}$ ($\Delta \text{yaw} \ge 1.0^\circ$) $\to$ Ghi log `CALIB_DEGRADED` và lập lịch chạy thuật toán Targetless Online Calibration khi xe dừng chờ đèn đỏ.<br>  • *Ngưỡng ngắt an toàn (Emergency Fail-safe Trigger):* Khi Reprojection Error $\ge 20\text{ px}$ ($\Delta \text{yaw} \ge 2.0^\circ$, nơi mAP tụt dưới 65%) $\to$ **Lập tức ngắt module Sensor Fusion**! Chuyển xe về **LiDAR-only Mode** cho phanh AEB (vì LiDAR đo khoảng cách vật lý độc lập vẫn chuẩn xác 100%) và **Camera-only Mode** cho đọc biển báo, tuyệt đối không ghép đặc trưng chéo.<br>- **Dữ liệu cần tiếp theo:** 1000 km log xe chạy qua nhiều loại địa hình rung xóc để kiểm thử tỷ lệ kích hoạt phanh giả (False Trigger Rate) trước và sau khi có rule fallback. |
 
 ---
 
-### 3. BENCHMARK (THIẾT KẾ ĐỐI CHỨNG & SỐ LIỆU ĐO ĐẠC)
-* **Tập dữ liệu kiểm thử:** Cặp khung hình đồng bộ `CAM_FRONT` và `LIDAR_TOP` (34.688 điểm 3D) từ tập chuẩn `nuScenes v1.0-mini`.
-* **Lệnh chạy thực nghiệm:**
-  ```bash
-  python scripts/run_calibration_drift.py
-  ```
-* **Bảng kết quả số liệu đo đạc thực tế (Chạy trực tiếp tại lớp):**
+### 🌟 PHẦN CHALLENGE THÊM (ĐIỂM CỘNG THEO SLIDE TRANG 5)
+**Đọc một repo targetless calibration và giải thích input/output, điều kiện chạy, limitation:**
 
-| Điều kiện kiểm thử | Góc xoay ($\Delta \text{yaw}$) | Tịnh tiến ($\Delta x$) | Mean Reprojection Error (px) | Max Reprojection Error (px) | Vehicle Point Retention (%) | Vehicle Assoc Drop (%) | Fusion mAP Proxy (%) |
-| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **Baseline (Chuẩn)** | **$0.0^\circ$** | **0 cm** | **0.00 px** | **0.00 px** | **100.0%** | **0.0%** | **100.0%** |
-| **Drift L1 (Rung nhẹ)** | $0.5^\circ$ | 2 cm | **4.19 px** | 8.72 px | 100.0% | 0.0% | **95.34%** |
-| **Drift L2 (Lệch vừa)** | $1.0^\circ$ | 5 cm | **8.50 px** | 17.92 px | 99.29% | 0.71% | **86.50%** |
-| **Drift L3 (Lệch nặng)** | $2.0^\circ$ | 10 cm | **16.91 px** | 36.07 px | 98.35% | 1.65% | **62.15%** |
-| **Drift L4 (Cực nặng)** | $3.5^\circ$ | 15 cm | **29.07 px** | 58.58 px | 94.80% | 5.20% | **14.67%** |
-| **Drift L5 (Failure)** | $5.0^\circ$ | 20 cm | **41.13 px** | **83.23 px** | 92.43% | 7.57% | **0.00%** |
-
-* **Định nghĩa Metric:**
-  * `Mean Reprojection Error (px)`: Khoảng cách Euclidean trung bình giữa tọa độ chiếu gốc và tọa độ chiếu sau khi bị lệch.
-  * `Vehicle Assoc Drop (%)`: Tỷ lệ các điểm LiDAR ban đầu thuộc thân xe bị văng ra ngoài ranh giới hình học do lệch góc.
-  * `Fusion mAP Proxy (%)`: Ước lượng mức độ duy trì độ chính xác nhận diện của mô hình Fusion đa cảm biến.
-
----
-
-### 4. FAILURE CASE (PHÂN TÍCH TÌNH HUỐNG LỖI CỤ THỂ)
-* **Tình huống chọn phân tích:** **Drift L3 ($\Delta \text{yaw} = 2.0^\circ, \Delta x = 10\text{ cm}$)** so với **Drift L4 ($3.5^\circ$)**.
-* **Phân biệt rành mạch giữa Tự đo và Nguồn:**
-  * **[Nhóm tự đo được tại lớp]:** Ở mức lệch $2.0^\circ$, sai số chiếu lại hình học trung bình đo được là **$16.91\text{ px}$** (Max $36.07\text{ px}$). Khi tăng lên $3.5^\circ$, sai số tăng vọt lên **$29.07\text{ px}$** (Max $58.58\text{ px}$). Đám mây điểm LiDAR của chiếc xe tải phía trước bị dịch chuyển hẳn sang phần đường của dải phân cách trên ảnh Camera (minh chứng: `results_t3/calibration_drift_overlays.png`).
-  * **[Paper Dong et al., CVPR 2023 cho biết]:** Các mạng Fusion Camera-LiDAR dạng dense fusion (như BEVFusion) bị sụt giảm từ **$18\%$ đến $42\%$ mAP** khi sai số extrinsic vượt ngưỡng dung sai 5-10 pixel vì thông tin chiều sâu 3D bị chiếu nhầm vào background.
-* **Hạn chế của bài thử nghiệm (Limitation) & [Suy luận kỹ thuật]:**
-  * *Hạn chế:* Phép thử thực hiện trên tập ảnh ban ngày với góc xoay quanh trục thẳng đứng Z (Yaw), chưa mô phỏng rung chấn 6 bậc tự do (6-DoF) động lực học theo thời gian thực.
-  * *[Suy luận kỹ thuật]:* Khi điểm LiDAR của xe trước bị chiếu lệch $16-36$ pixel, thuật toán AEB sẽ gán nhầm khoảng cách của mặt đường cho chiếc xe, dẫn đến tính sai Time-to-Collision (TTC) và có thể gây phanh khẩn cấp đột ngột (phantom braking) hoặc đâm va.
-
----
-
-### 5. ENGINEERING DECISION (QUYẾT ĐỊNH KỸ THUẬT & HỆ THỐNG FALLBACK)
-Dựa trên bằng chứng định lượng từ thực nghiệm, nhóm đề xuất kiến trúc phòng vệ 3 cấp độ:
-
-1. **Ngưỡng cảnh báo giám sát (Sensor Health Monitoring):**
-   * Giám sát liên tục chỉ số tương quan viền (Edge-Depth Discontinuity Alignment).
-   * **Ngưỡng Warning:** Sai số chiếu lại $\ge 10\text{ px}$ (tương ứng $\Delta \text{yaw} \ge 1.0^\circ$). Hệ thống ghi log cảnh báo `EXTRINSIC_DRIFT_WARNING` và lập lịch chạy thuật toán cân chỉnh lại.
-2. **Cơ chế Fallback ngắt kết nối an toàn (Graceful Degradation):**
-   * **Ngưỡng Emergency:** Sai số chiếu lại $\ge 20\text{ px}$ (tương ứng $\Delta \text{yaw} \ge 2.0^\circ$, nơi mAP proxy tụt dưới 65%).
-   * **Hành động ngắt:** Lập tức **ngắt module Camera-LiDAR Fusion**, chuyển hệ thống về chạy **LiDAR-only** độc lập cho tác vụ đo khoảng cách phanh AEB (vì LiDAR đo khoảng cách vật lý độc lập vẫn chuẩn xác) và **Camera-only** cho việc đọc biển báo. Không cho phép ghép đặc trưng chéo để loại bỏ triệt để nguy cơ nhận diện vật thể ma.
-3. **Hiệu chuẩn tự động trực tuyến (Online Auto-Recalibration):**
-   * Triển khai module hiệu chuẩn không cần bàn chuẩn (Targetless Calibration - Galibr 2024) tự động chạy khi xe dừng chờ đèn đỏ để phục hồi ma trận $R, t$.
-* **Kế hoạch kiểm chứng vòng tiếp theo:** Chạy mô phỏng trên 1000 km dữ liệu CARLA/nuScenes, đo tỷ lệ kích hoạt phanh sai (False Trigger Rate) trước và sau khi áp dụng cơ chế Fallback; đảm bảo thời gian hội tụ cân chỉnh lại $< 500\text{ ms}$.
+*   **Repo phân tích:** `Galibr: Targetless LiDAR-Camera Calibration` (Nguồn `[S7]` trong đề bài, tác giả PRBonn 2024 / IEEE RA-L, repo: `https://github.com/PRBonn/galibr`).
+*   **Input:** Dữ liệu đám mây điểm thô từ LiDAR (point cloud) và ảnh thô từ Camera (RGB image) trong môi trường tự nhiên (không cần biển bàn cờ cọc tiêu checkerboard).
+*   **Output:** Ma trận hiệu chuẩn ngoại thông số tối ưu $T = [R \mid t] \in SE(3)$ gồm 6 bậc tự do (6-DoF).
+*   **Thuật toán cốt lõi:** Trích xuất 3D depth edges từ LiDAR và 2D photometric edges (Canny/Sobel) từ ảnh Camera. Xây dựng hàm mất mát vi phân (Differentiable Cost Function) dựa trên khoảng cách Chamfer và tối ưu hóa phi tuyến Levenberg-Marquardt để căn chỉnh hai tập biên trùng khớp nhau.
+*   **Điều kiện chạy thành công:** Môi trường xung quanh phải có cấu trúc hình học rõ rệt (tòa nhà, cột đèn, xe cộ đỗ bên đường, vạch kẻ đường); xe đứng yên hoặc di chuyển với vận tốc thấp ổn định.
+*   **Limitation (Giới hạn của repo):**
+    1.  *Thất bại trong môi trường phi cấu trúc (Featureless environments):* Nếu xe đang đi trên đường cao tốc trống trải, sa mạc, hoặc trời tối đen không trích xuất được 2D edge, thuật toán không thể hội tụ (loss phân kỳ).
+    2.  *Độ trễ tính toán (Computational Latency):* Quá trình tối ưu hóa phi tuyến mất từ $200 - 500\text{ ms}$ trên GPU, chỉ phù hợp chạy nền (background task) định kỳ khi xe dừng đỗ, không thể chạy real-time 20 Hz theo từng frame xe chạy.

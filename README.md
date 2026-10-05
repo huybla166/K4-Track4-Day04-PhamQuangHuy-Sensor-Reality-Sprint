@@ -1,73 +1,36 @@
-# K4-Track4-Day04-Team01-Sensor-Reality-Sprint
-> **Chủ đề 3 (T3): Calibration Drift Impact on Multi-Sensor Fusion (Camera - LiDAR) in ADAS**  
-> *Đo lường tác động của lỗi trôi dạt hiệu chuẩn ngoại thông số tới sai số chiếu lại, tỷ lệ liên kết đặc trưng và mức sụt giảm mAP.*
+# BÁO CÁO 1 TRANG CHUẨN SLIDE — CHỦ ĐỀ T3: CALIBRATION DRIFT IMPACT
+## K4-Track4-Day04-Team01-Sensor-Reality-Sprint
+
+* **Chủ đề:** T3. Calibration drift impact (Sensor Reality Sprint · Track 4 Day 4)
+* **Nhóm thực hiện:** Nhóm 1 (5 thành viên — K4 Track 4 VinUni)
+  - Phạm Quang Huy (2A202602900) - Metric & Geometry Lead
+  - Trần Trung Kiên (2A202602901) - Data & Perturbation Lead
+  - Nguyễn Thành Danh (2A202602902) - Benchmark Runner & Eval
+  - Lê Quốc Việt (2A202602903) - Literature & Method Analyst
+  - Hoàng Anh Tuấn (2A202602904) - Safety & Fallback Lead
+* **Repo GitHub:** `https://github.com/huybla166/K4-Track4-Day04-Team01-Sensor-Reality-Sprint`
+* **Lệnh chạy tái hiện:** `python scripts/run_calibration_drift.py`
 
 ---
 
-## 👥 Danh sách thành viên nhóm (Team Members)
-Xem chi tiết danh sách họ tên, MSSV và phân công tại [`TEAMMATES.md`](TEAMMATES.md).
-
-| Thành viên | MSSV | Vai trò | Báo cáo cá nhân |
-|:---|:---:|:---|:---|
-| **Phạm Quang Huy** (Lead) | `2A202602900` | Metric & Geometry Lead | [`SUBMISSION_PhamQuangHuy_2A202602900.md`](submissions/SUBMISSION_PhamQuangHuy_2A202602900.md) |
-| **Trần Trung Kiên** | `2A202602901` | Data & Perturbation Lead | [`SUBMISSION_TranTrungKien_2A202602901.md`](submissions/SUBMISSION_TranTrungKien_2A202602901.md) |
-| **Nguyễn Thành Danh** | `2A202602902` | Benchmark Runner & Eval | [`SUBMISSION_NguyenThanhDanh_2A202602902.md`](submissions/SUBMISSION_NguyenThanhDanh_2A202602902.md) |
-| **Lê Quốc Việt** | `2A202602903` | Literature & Method Analyst | [`SUBMISSION_LeQuocViet_2A202602903.md`](submissions/SUBMISSION_LeQuocViet_2A202602903.md) |
-| **Hoàng Anh Tuấn** | `2A202602904` | Safety & Fallback Lead | [`SUBMISSION_HoangAnhTuan_2A202602904.md`](submissions/SUBMISSION_HoangAnhTuan_2A202602904.md) |
+| Mục (Theo Mẫu Trang 8) | Nội dung chi tiết chuẩn xác của nhóm |
+| :--- | :--- |
+| **1. Problem** *(Tính năng, sensor, platform, failure thực tế)* | - **Nền tảng & Cảm biến:** Xe tự lái ADAS (Autonomous Driving) trang bị Camera góc rộng trước (`CAM_FRONT`, 1600x900) và LiDAR 32-beam trên nóc xe (`LIDAR_TOP`).<br>- **Tính năng chịu ảnh hưởng:** Nhận diện vật thể 3D đa cảm biến (3D Object Detection) và Phanh khẩn cấp tự động (AEB).<br>- **Failure thực tế:** Sau khi xe đi qua ổ gà, gờ giảm tốc mạnh, va chạm nhẹ hoặc biến dạng nhiệt khung giá đỡ, ma trận ngoại thông số (Extrinsic Calibration) bị trôi lệch (**Calibration Drift**): góc xoay $\Delta \text{yaw} \in [0.5^\circ, 5.0^\circ]$, tịnh tiến $\Delta x \in [2, 20\text{ cm}]$, dù cả Camera và LiDAR vẫn truyền dữ liệu bình thường. |
+| **2. Method** *(Paper/repo, input, output, assumption)* | - **Nguồn tham khảo chuẩn:** Paper `[S5]` *Dong et al., CVPR 2023* (nuScenes-C / KITTI-C 3D corruption benchmark) và `[S7]` *Galibr (2024)* / *CalibRefine (2025)* (Targetless online calibration).<br>- **Thuật toán hình học:** Phép biến đổi không gian tọa độ 3D-2D: $P_{\text{cam}} = R^\top (P_{\text{lidar}} - t)$, điểm chiếu trên ảnh $[u, v, 1]^\top = \frac{1}{z} K \cdot P_{\text{cam}}$.<br>- **Input $\to$ Output:** 34.688 điểm LiDAR 3D, ảnh RGB $1600 \times 900$, ma trận $K$, $(R, t) \to$ Tọa độ chiếu 2D $[u, v]$ và gán đặc trưng chùm tia vào bounding box xe.<br>- **Assumption (Giả định):** Cảm biến đã đồng bộ thời gian (zero latency offset); thấu kính camera được khử méo quang học chuẩn. |
+| **3. Benchmark** *(Dataset, metric, cấu hình test, kết quả số)* | - **Dataset:** Dữ liệu thực tế cặp frame `CAM_FRONT` và `LIDAR_TOP` từ `nuScenes v1.0-mini`.<br>- **Cấu hình kiểm thử:** Giữ nguyên dữ liệu, perturb góc $\Delta \text{yaw} \in \{0.0^\circ, 0.5^\circ, 1.0^\circ, 2.0^\circ, 3.5^\circ, 5.0^\circ\}$ và tịnh tiến $\Delta x \in \{0, 2, 5, 10, 15, 20\}$ cm.<br>- **Kết quả đo đạc thực tế tại lớp (Đồ thị: `results/calibration_drift_curves.png`):**<br>  • *Baseline ($0^\circ, 0\text{cm}$):* Reprojection Error = **0.00 px**; Box Point Retention = **100%**; mAP Proxy = **100%**.<br>  • *Mức 1 ($0.5^\circ, 2\text{cm}$):* Reproj Error = **4.19 px**; Box Retention = **100%**; mAP Proxy = **95.34%** (trong dung sai).<br>  • *Mức 2 ($1.0^\circ, 5\text{cm}$):* Reproj Error = **8.50 px**; Box Retention = **99.29%**; mAP Proxy = **86.50%**.<br>  • *Mức 3 ($2.0^\circ, 10\text{cm}$):* Reproj Error = **16.91 px (Max 36.07 px)**; Box Retention = **98.35%**; mAP Proxy = **62.15%**.<br>  • *Mức 4 ($3.5^\circ, 15\text{cm}$):* Reproj Error = **29.07 px (Max 58.58 px)**; mAP Proxy = **14.67%**.<br>  • *Mức 5 ($5.0^\circ, 20\text{cm}$):* Reproj Error = **41.13 px (Max 83.23 px)**; mAP Proxy = **0.00%** (Failure hoàn toàn). |
+| **4. Failure Case** *(Một case thuật toán vẫn fail hoặc health score phát hiện)* | - **Phân tích Case $2.0^\circ$ yaw (Drift L3):**<br>  • **[Nhóm tự đo tại lớp]:** Sai số chiếu lại trung bình $16.91\text{ px}$ (cực đại $36.07\text{ px}$). Trên ảnh Camera, toàn bộ chùm tia LiDAR thuộc về thân xe tải phía trước bị dịch chuyển văng sang làn đường bên cạnh (xem ảnh overlay `results/calibration_drift_overlays.png`).<br>  • **[Paper Dong et al. CVPR 2023]:** Mạng Fusion bị rớt tới $42\%$ mAP do gán nhầm đặc trưng ngữ nghĩa 2D vào voxel 3D rỗng.<br>  • **[Suy luận kỹ thuật]:** Thuật toán AEB tính sai khoảng cách Time-to-Collision (TTC) vì lấy nhầm depth của mặt đường/làn bên cạnh gán cho xe phía trước $\to$ Nguy cơ phanh gấp đột ngột (phantom braking) hoặc đâm va nghiêm trọng. |
+| **5. Engineering Decision** *(Cần log thêm gì, fallback gì, data nào tiếp theo?)* | - **Log thêm:** Giám sát liên tục chỉ số tương quan viền hình học (Edge-Depth Correlation Loss) giữa Canny Edge của Camera và Depth Discontinuity của LiDAR theo thời gian thực.<br>- **Đề xuất Trigger Re-calibration (Ngưỡng cảnh báo & kích hoạt):**<br>  • *Ngưỡng cảnh báo (Warning):* Khi Reprojection Error $\ge 10\text{ px}$ ($\Delta \text{yaw} \ge 1.0^\circ$) $\to$ Ghi log `CALIB_DEGRADED` và lập lịch chạy thuật toán Targetless Online Calibration khi xe dừng chờ đèn đỏ.<br>  • *Ngưỡng ngắt an toàn (Emergency Fail-safe Trigger):* Khi Reprojection Error $\ge 20\text{ px}$ ($\Delta \text{yaw} \ge 2.0^\circ$, nơi mAP tụt dưới 65%) $\to$ **Lập tức ngắt module Sensor Fusion**! Chuyển xe về **LiDAR-only Mode** cho phanh AEB (vì LiDAR đo khoảng cách vật lý độc lập vẫn chuẩn xác 100%) và **Camera-only Mode** cho đọc biển báo, tuyệt đối không ghép đặc trưng chéo.<br>- **Dữ liệu cần tiếp theo:** 1000 km log xe chạy qua nhiều loại địa hình rung xóc để kiểm thử tỷ lệ kích hoạt phanh giả (False Trigger Rate) trước và sau khi có rule fallback. |
 
 ---
 
-## 🎯 Báo cáo tổng quan 5 mục (Executive Summary)
+### 🌟 PHẦN CHALLENGE THÊM (ĐIỂM CỘNG THEO SLIDE TRANG 5)
+**Đọc một repo targetless calibration và giải thích input/output, điều kiện chạy, limitation:**
 
-### 1. Problem
-* **Nền tảng & Sensor:** Xe tự lái ADAS trang bị Camera góc rộng phía trước (`CAM_FRONT`) và LiDAR 32-beam (`LIDAR_TOP`).
-* **Failure Case:** Rung chấn cơ học khi xe qua gờ giảm tốc/ổ gà hoặc biến dạng nhiệt khung đỡ làm trôi ma trận ngoại thông số $(R, t)$ (Extrinsic Calibration Drift): lệch góc quay $\Delta \text{yaw} \in [0.5^\circ, 5.0^\circ]$, dịch chuyển $\Delta x \in [2, 20\text{ cm}]$.
-
-### 2. Method
-* **Paper tham khảo:** *Dong et al. (CVPR 2023 - nuScenes-C benchmark)*, *Galibr: Targetless LiDAR-Camera Calibration (2024)*.
-* **Input $\to$ Output:** Điểm LiDAR $P_{\text{lidar}} \in \mathbb{R}^{34688 \times 3}$, ảnh Camera $I_{1600 \times 900}$, ma trận $(R, t), K \to$ Tọa độ chiếu 2D $[u, v]$ và gán đặc trưng đa cảm biến.
-
-### 3. Benchmark (Kết quả đo đạc thực tế)
-Chạy trực tiếp bằng lệnh: `python scripts/run_calibration_drift.py`
-
-| Điều kiện kiểm thử | Góc xoay ($\Delta \text{yaw}$) | Tịnh tiến ($\Delta x$) | Mean Reproj Error (px) | Max Reproj Error (px) | Vehicle Retention (%) | Fusion mAP Proxy (%) |
-|:---|:---:|:---:|:---:|:---:|:---:|:---:|
-| **Baseline** | **$0.0^\circ$** | **0 cm** | **0.00 px** | **0.00 px** | **100.0%** | **100.0%** |
-| **Drift L1 (Rung nhẹ)** | $0.5^\circ$ | 2 cm | **4.19 px** | 8.72 px | 100.0% | **95.34%** |
-| **Drift L2 (Lệch vừa)** | $1.0^\circ$ | 5 cm | **8.50 px** | 17.92 px | 99.29% | **86.50%** |
-| **Drift L3 (Lệch nặng)** | $2.0^\circ$ | 10 cm | **16.91 px** | 36.07 px | 98.35% | **62.15%** |
-| **Drift L4 (Cực nặng)** | $3.5^\circ$ | 15 cm | **29.07 px** | 58.58 px | 94.80% | **14.67%** |
-| **Drift L5 (Failure)** | $5.0^\circ$ | 20 cm | **41.13 px** | **83.23 px** | 92.43% | **0.00%** |
-
-### 4. Failure Case
-* **[Nhóm tự đo tại lớp]:** Ở mức lệch $2.0^\circ$, sai số chiếu lại hình học trung bình là **$16.91\text{ px}$** (Max **$36.07\text{ px}$**). Chùm điểm LiDAR của xe tải phía trước bị dịch chuyển hẳn sang làn đường đối diện trên ảnh camera.
-* **[Paper Dong et al. 2023]:** Mạng Fusion bị giảm tới $42\%$ mAP do gán nhầm đặc trưng 2D vào voxel 3D rỗng.
-* **[Suy luận kỹ thuật]:** Hệ thống AEB tính sai Time-to-Collision (TTC), gây nguy cơ phanh gấp đột ngột (phantom braking) hoặc đâm va nguy hiểm.
-
-### 5. Engineering Decision
-* **Ngưỡng Cảnh báo ($10\text{ px} / 1.0^\circ$):** Bật cờ `CALIB_DEGRADED`, lập lịch chạy thuật toán Targetless Calibration ngầm.
-* **Ngưỡng Ngắt an toàn ($20\text{ px} / 2.0^\circ$):** Lập tức **ngắt module Sensor Fusion**, hạ cấp về **LiDAR-only** cho phanh AEB và **Camera-only** cho đọc biển báo, tuyệt đối không ghép đặc trưng chéo.
-
----
-
-## 📁 Cấu trúc thư mục (Repository Structure)
-```
-K4-Track4-Day04-Team01-Sensor-Reality-Sprint/
-├── TEAMMATES.md                                          # Danh sách 5 thành viên nhóm
-├── README.md                                             # Báo cáo tổng hợp
-├── scripts/
-│   └── run_calibration_drift.py                          # Mã nguồn chạy thực nghiệm
-├── results/
-│   ├── calibration_drift_metrics.csv                     # Bảng số liệu đo đạc CSV
-│   ├── calibration_drift_curves.png                      # Biểu đồ xu hướng suy giảm
-│   └── calibration_drift_overlays.png                    # Lưới ảnh trực quan 6 mức độ trôi dạt
-├── docs/
-│   ├── BAO_CAO_NHOM.md                                   # Báo cáo chi tiết cả nhóm
-│   └── PITCH_SLIDES.md                                   # Kịch bản thuyết trình 3-5 phút
-└── submissions/
-    ├── SUBMISSION_PhamQuangHuy_2A202602900.md            # Bản nộp riêng TV1
-    ├── SUBMISSION_TranTrungKien_2A202602901.md           # Bản nộp riêng TV2
-    ├── SUBMISSION_NguyenThanhDanh_2A202602902.md          # Bản nộp riêng TV3
-    ├── SUBMISSION_LeQuocViet_2A202602903.md              # Bản nộp riêng TV4
-    └── SUBMISSION_HoangAnhTuan_2A202602904.md            # Bản nộp riêng TV5
-```
+*   **Repo phân tích:** `Galibr: Targetless LiDAR-Camera Calibration` (Nguồn `[S7]` trong đề bài, tác giả PRBonn 2024 / IEEE RA-L, repo: `https://github.com/PRBonn/galibr`).
+*   **Input:** Dữ liệu đám mây điểm thô từ LiDAR (point cloud) và ảnh thô từ Camera (RGB image) trong môi trường tự nhiên (không cần biển bàn cờ cọc tiêu checkerboard).
+*   **Output:** Ma trận hiệu chuẩn ngoại thông số tối ưu $T = [R \mid t] \in SE(3)$ gồm 6 bậc tự do (6-DoF).
+*   **Thuật toán cốt lõi:** Trích xuất 3D depth edges từ LiDAR và 2D photometric edges (Canny/Sobel) từ ảnh Camera. Xây dựng hàm mất mát vi phân (Differentiable Cost Function) dựa trên khoảng cách Chamfer và tối ưu hóa phi tuyến Levenberg-Marquardt để căn chỉnh hai tập biên trùng khớp nhau.
+*   **Điều kiện chạy thành công:** Môi trường xung quanh phải có cấu trúc hình học rõ rệt (tòa nhà, cột đèn, xe cộ đỗ bên đường, vạch kẻ đường); xe đứng yên hoặc di chuyển với vận tốc thấp ổn định.
+*   **Limitation (Giới hạn của repo):**
+    1.  *Thất bại trong môi trường phi cấu trúc (Featureless environments):* Nếu xe đang đi trên đường cao tốc trống trải, sa mạc, hoặc trời tối đen không trích xuất được 2D edge, thuật toán không thể hội tụ (loss phân kỳ).
+    2.  *Độ trễ tính toán (Computational Latency):* Quá trình tối ưu hóa phi tuyến mất từ $200 - 500\text{ ms}$ trên GPU, chỉ phù hợp chạy nền (background task) định kỳ khi xe dừng đỗ, không thể chạy real-time 20 Hz theo từng frame xe chạy.
