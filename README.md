@@ -9,7 +9,10 @@
   - Lê Quốc Việt (2A202602903) - Literature & Method Analyst
   - Hoàng Anh Tuấn (2A202602904) - Safety & Fallback Lead
 * **Repo GitHub:** `https://github.com/huybla166/K4-Track4-Day04-Team01-Sensor-Reality-Sprint`
-* **Lệnh chạy tái hiện:** `python scripts/run_calibration_drift.py`
+* **Lệnh chạy Benchmark:** `python scripts/run_calibration_drift.py`
+* **Giao diện Demo Tương tác (Interactive UI):**
+  - Mở trực tiếp file: [`DEMO_SIMULATOR.html`](DEMO_SIMULATOR.html) (Click đúp chuột để mở ngay trên trình duyệt, không cần cài đặt gì).
+  - Hoặc chạy lệnh Python: `python scripts/launch_demo.py`
 
 ---
 
