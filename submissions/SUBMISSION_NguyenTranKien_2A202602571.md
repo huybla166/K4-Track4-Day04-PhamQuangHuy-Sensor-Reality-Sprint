@@ -5,7 +5,7 @@
 * **Mã sinh viên (MSSV):** `2A202602571`
 * **Nhóm thực hiện:** Nhóm 01 (4 thành viên)
 * **Vai trò trong nhóm:** **Safety State Machine & Fallback Lead** — Chịu trách nhiệm thiết kế bộ điều khiển Trigger State Machine 4 cấp độ (Level S0-S3), chiến lược ngắt liên kết và Fallback LiDAR-only AEB, tuân thủ tiêu chuẩn an toàn ISO 26262 ASIL-D & SOTIF ISO 21448.
-* **Repository GitHub nhóm:** `https://github.com/huybla166/K4-Track4-Day04-Team01-Sensor-Reality-Sprint`
+* **Repository GitHub nhóm:** `https://github.com/huybla166/K4-Track4-Day04-PhamQuangHuy-Sensor-Reality-Sprint`
 * **Lệnh chạy tái hiện:** `python scripts/run_calibration_drift.py`
 
 ---

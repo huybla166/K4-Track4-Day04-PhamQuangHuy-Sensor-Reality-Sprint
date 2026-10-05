@@ -47,7 +47,7 @@ K4-Track4-Day04-Team01-Sensor-Reality-Sprint/
 Chạy 3 lệnh sau trong PowerShell để đồng bộ toàn bộ repo lên GitHub:
 ```powershell
 cd "D:\AI in Action\Labs\K4-Track4-Day04-Team01-Sensor-Reality-Sprint"
-git remote add origin https://github.com/huybla166/K4-Track4-Day04-Team01-Sensor-Reality-Sprint.git
+git remote add origin https://github.com/huybla166/K4-Track4-Day04-PhamQuangHuy-Sensor-Reality-Sprint.git
 git branch -M main
 git push -u origin main
 ```
@@ -65,7 +65,7 @@ Mỗi thành viên vào link nộp bài trên VLearn:
 4. **Nguyễn Trần Kiên (2A202602571):**  
    Mở file [`submissions/SUBMISSION_NguyenTranKien_2A202602571.md`](submissions/SUBMISSION_NguyenTranKien_2A202602571.md), copy toàn bộ nội dung và dán vào VLearn.
 
-*Lưu ý: Cả 4 thành viên đều dùng chung URL repository: `https://github.com/huybla166/K4-Track4-Day04-Team01-Sensor-Reality-Sprint` nhưng mỗi người nộp file riêng mang tên và MSSV của mình.*
+*Lưu ý: Cả 4 thành viên đều dùng chung URL repository: `https://github.com/huybla166/K4-Track4-Day04-PhamQuangHuy-Sensor-Reality-Sprint` nhưng mỗi người nộp file riêng mang tên và MSSV của mình.*
 
 ---
 

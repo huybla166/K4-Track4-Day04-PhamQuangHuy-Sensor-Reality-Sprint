@@ -5,7 +5,7 @@
 * **Mã sinh viên (MSSV):** `2A202602900`
 * **Nhóm thực hiện:** Nhóm 01 (4 thành viên)
 * **Vai trò trong nhóm:** **Metric & Geometry Architect (Trưởng nhóm)** — Chịu trách nhiệm xây dựng mô hình toán học biến đổi không gian SE(3), ma trận chiếu Pinhole K, khảo sát độ nhạy góc xoay vs tịnh tiến.
-* **Repository GitHub nhóm:** `https://github.com/huybla166/K4-Track4-Day04-Team01-Sensor-Reality-Sprint`
+* **Repository GitHub nhóm:** `https://github.com/huybla166/K4-Track4-Day04-PhamQuangHuy-Sensor-Reality-Sprint`
 * **Lệnh chạy tái hiện:** `python scripts/run_calibration_drift.py`
 
 ---

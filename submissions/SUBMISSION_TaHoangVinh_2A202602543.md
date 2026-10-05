@@ -5,7 +5,7 @@
 * **Mã sinh viên (MSSV):** `2A202602543`
 * **Nhóm thực hiện:** Nhóm 01 (4 thành viên)
 * **Vai trò trong nhóm:** **Failure Case & SOTA Literature Analyst** — Chịu trách nhiệm bóc tách trực quan hóa Point-Painting (Case 1 $\to$ Case 3), phân tích điểm gãy nguy hiểm tại 1.0° & 2.0°, nghiên cứu chuyên sâu 3 công trình SOTA: CalibRefine (IEEE TIM 2026), DF-Calib (arXiv:2504.01416), Galibr (IEEE IV 2024).
-* **Repository GitHub nhóm:** `https://github.com/huybla166/K4-Track4-Day04-Team01-Sensor-Reality-Sprint`
+* **Repository GitHub nhóm:** `https://github.com/huybla166/K4-Track4-Day04-PhamQuangHuy-Sensor-Reality-Sprint`
 * **Lệnh chạy tái hiện:** `python scripts/run_calibration_drift.py`
 
 ---

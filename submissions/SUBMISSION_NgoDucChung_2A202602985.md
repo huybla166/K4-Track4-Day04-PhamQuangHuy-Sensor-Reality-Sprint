@@ -5,7 +5,7 @@
 * **Mã sinh viên (MSSV):** `2A202602985`
 * **Nhóm thực hiện:** Nhóm 01 (4 thành viên)
 * **Vai trò trong nhóm:** **Data & Benchmark Evaluation Lead** — Chịu trách nhiệm xử lý tập dữ liệu nuScenes v1.0-mini, xây dựng bộ mô phỏng rung chấn quét góc 0°–2.5° và tịnh tiến 0–15cm, trích xuất log, xuất CSV và 4 đồ thị sai số.
-* **Repository GitHub nhóm:** `https://github.com/huybla166/K4-Track4-Day04-Team01-Sensor-Reality-Sprint`
+* **Repository GitHub nhóm:** `https://github.com/huybla166/K4-Track4-Day04-PhamQuangHuy-Sensor-Reality-Sprint`
 * **Lệnh chạy tái hiện:** `python scripts/run_calibration_drift.py`
 
 ---

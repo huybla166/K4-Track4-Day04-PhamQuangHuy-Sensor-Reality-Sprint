@@ -7,7 +7,7 @@
   - Ngô Đức Chung (2A202602985) - Data & Benchmark Evaluation Lead
   - Tạ Hoàng Vinh (2A202602543) - Failure Case & SOTA Literature Analyst
   - Nguyễn Trần Kiên (2A202602571) - Safety State Machine & Fallback Lead
-* **Repo GitHub:** `https://github.com/huybla166/K4-Track4-Day04-Team01-Sensor-Reality-Sprint`
+* **Repo GitHub:** `https://github.com/huybla166/K4-Track4-Day04-PhamQuangHuy-Sensor-Reality-Sprint`
 * **Lệnh chạy tái hiện:** `python scripts/run_calibration_drift.py`
 
 ---
